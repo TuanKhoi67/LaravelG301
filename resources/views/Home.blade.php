@@ -76,16 +76,16 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- Nút điều hướng -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Giới thiệu</a>
+                        <a class="nav-link" href="/about">Giới thiệu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Liên hệ</a>
+                        <a class="nav-link" href="/contact">Liên hệ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#classes">Lớp học</a>
+                        <a class="nav-link" href="/classes">Lớp học</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Trang cá nhân</a>
+                        <a class="nav-link" href="/profile">Trang cá nhân</a>
                     </li>
 
                     <!-- Dropdown -->
@@ -95,27 +95,21 @@
                             Quản lý
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                            <li><a class="dropdown-item" href="#students">Sinh viên</a></li>
-                            <li><a class="dropdown-item" href="#subjects">Giáo viên</a></li>
-                            <li><a class="dropdown-item" href="#subjects">Môn học</a></li>
+                            <li><a class="dropdown-item" href="/students">Sinh viên</a></li>
+                            <li><a class="dropdown-item" href="/subjects">Môn học</a></li>
                         </ul>
                     </li>
                 </ul>
 
                 <!-- Nút đăng nhập -->
                 <form class="d-flex">
-                    <button class="btn btn-outline-light" type="button" onclick="handleLogin()">Đăng nhập</button>
+                    <button class="btn btn-outline-light" type="button"><a class="dropdown-item"
+                            href="/login">Login</a></button>
                 </form>
             </div>
         </div>
     </nav>
 
-    <script>
-        function handleLogin() {
-            alert("Chuyển đến trang đăng nhập...");
-            // window.location.href = "/login";
-        }
-    </script>
 
     <!-- Carousel hình ảnh mượt -->
     <div id="studentCarousel" class="carousel slide" data-bs-ride="carousel">
