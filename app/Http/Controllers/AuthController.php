@@ -13,35 +13,51 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $request) {
-        $request->validate([
-            'username' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+    public function register(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:6|confirmed',
+        'username' => 'required|min:3|max:255',
+    ]);
 
-        User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    // Tạo người dùng mới
+    $user = User::create([
+        'email' => $request->email,
+        'password' => bcrypt($request->password),
+        'username' => $request->username,
+    ]);
 
-        return redirect('/login')->with('success', 'Đăng ký thành công!');
-    }
+    // Đăng nhập ngay sau khi tạo tài khoản mới
+    Auth::login($user);
+
+    return redirect()->route('login')->with('success', 'Đăng ký thành công, vui lòng đăng nhập.');
+}
+
 
     public function showLoginForm() {
         return view('auth.login');
     }
 
-    public function login(Request $request) {
-        $credentials = $request->only('email', 'password');
+    public function login(Request $request)
+{
+    // Validate
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-            return redirect('/profile');
-        }
-
-        return back()->withErrors(['email' => 'Email hoặc mật khẩu sai']);
+    // Kiểm tra đăng nhập
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Đăng nhập thành công, chuyển hướng về trang chủ
+        return redirect()->intended('/');
     }
+
+    // Đăng nhập thất bại, quay lại với thông báo lỗi
+    return back()->withErrors([
+        'email' => 'Thông tin đăng nhập không chính xác.',
+    ]);
+}
 
     public function logout() {
         Auth::logout();
