@@ -7,37 +7,38 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container py-5">
-        <h2 class="text-center mb-4">Danh Sách Lớp Học</h2>
-        <a href="{{ route('classes.create') }}" class="btn btn-primary mb-3">Thêm Lớp Học</a>
-
+    <div class="container py-4">
+        <h2>Danh sách lớp học</h2>
+        <a href="{{ route('classes.create') }}" class="btn btn-primary mb-3">Tạo lớp học mới</a>
+    
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Tên Lớp</th>
-                    <th>Môn Học</th>
-                    <th>Học Sinh</th>
-                    <th>Tên Giáo Viên</th>
-                    <th>Hành Động</th>
+                    <th>Tên lớp</th>
+                    <th>Môn học</th>
+                    <th>Giáo viên</th>
+                    <th>Học sinh</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($classRooms as $classRoom)
+                @foreach ($classrooms as $class)
                     <tr>
-                        <td>{{ $classRoom->name }}</td>
-                        <td>{{ $classRoom->subject->name }}</td>
+                        <td>{{ $class->name }}</td>
+                        <td>{{ $class->subject->name }}</td>
+                        <td>{{ $class->teacher_name }}</td>
                         <td>
-                            @foreach($classRoom->students as $student)
-                                <span class="badge bg-info">{{ $student->name }}</span>
-                            @endforeach
+                            <ul>
+                                @foreach ($class->students as $student)
+                                    <li>{{ $student->name }}</li>
+                                @endforeach
+                            </ul>
                         </td>
-                        <td>{{ $classRoom->teacher_name }}</td>
                         <td>
-                            <a href="{{ route('classes.edit', $classRoom->id) }}" class="btn btn-warning">Sửa</a>
-                            <form action="{{ route('classes.destroy', $classRoom->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Xóa</button>
+                            <a href="{{ route('classes.edit', $class->id) }}" class="btn btn-warning btn-sm">Sửa</a>
+                            <form action="{{ route('classes.destroy', $class->id) }}" method="POST" class="d-inline">
+                                @csrf @method('DELETE')
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Bạn chắc chứ?')">Xóa</button>
                             </form>
                         </td>
                     </tr>

@@ -12,8 +12,9 @@ class ClassRoomController extends Controller
     // Show all classrooms
     public function index()
     {
-        $classRooms = ClassRoom::with(['subject', 'student'])->get();
-        return view('classrooms.index', compact('classRooms'));
+        $classrooms = ClassRoom::with(['subject', 'students'])->get();
+
+        return view('Classrooms.index', compact('classrooms'));
     }
 
     // Show the form to create a new classroom
@@ -21,7 +22,7 @@ class ClassRoomController extends Controller
     {
         $subjects = Subject::all();
         $students = Student::all();
-        return view('classrooms.create', compact('subjects', 'students'));
+        return view('Classrooms.create', compact('subjects', 'students'));
     }
 
     // Store a new classroom
@@ -29,21 +30,25 @@ class ClassRoomController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'subject_id' => 'required',
+            'subject_id' => 'required|exists:subjects,id',
             'teacher_name' => 'required',
-            'students' => 'required|array',
+            'student_ids' => 'array|nullable',
+            'student_ids.*' => 'exists:students,id',
         ]);
 
-        $class = ClassRoom::create([
+        $classroom = ClassRoom::create([
             'name' => $request->name,
             'subject_id' => $request->subject_id,
             'teacher_name' => $request->teacher_name,
         ]);
 
-        $class->students()->attach($request->students);
+        if ($request->has('student_ids')) {
+            $classroom->students()->attach($request->student_ids);
+        }
 
-        return redirect()->route('classes.index')->with('success', 'Tạo lớp học thành công');
+        return redirect()->route('Classrooms.index')->with('success', 'Lớp học đã được tạo.');
     }
+
 
     // Show the form to edit an existing classroom
     public function edit(ClassRoom $class)
@@ -52,7 +57,7 @@ class ClassRoomController extends Controller
         $students = Student::all();
         $selectedStudents = $class->students->pluck('id')->toArray();
 
-        return view('classes.edit', compact('class', 'subjects', 'students', 'selectedStudents'));
+        return view('Classrooms.edit', compact('class', 'subjects', 'students', 'selectedStudents'));
     }
 
     public function update(Request $request, ClassRoom $class)
@@ -70,9 +75,9 @@ class ClassRoomController extends Controller
             'teacher_name' => $request->teacher_name,
         ]);
     
-        $class->students()->sync($request->students);
+        $class->students()->sync($request->student_ids);
     
-        return redirect()->route('classes.index')->with('success', 'Cập nhật lớp học thành công');
+        return redirect()->route('Classrooms.index')->with('success', 'Cập nhật lớp học thành công');
     }
     // Delete a classroom
     public function destroy(ClassRoom $class)
@@ -80,6 +85,6 @@ class ClassRoomController extends Controller
         $class->students()->detach();
         $class->delete();
 
-        return redirect()->route('classes.index')->with('success', 'Xóa lớp học thành công');
+        return redirect()->route('Classrooms.index')->with('success', 'Xóa lớp học thành công');
     }    
 }

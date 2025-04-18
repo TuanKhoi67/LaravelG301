@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Home;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -23,7 +24,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             // Chuyển hướng về trang chủ sau khi đăng nhập thành công
-            return redirect()->route('home'); // Hoặc route khác nếu cần
+            return redirect()->route('home'); 
         }
 
         return back()->withErrors([
@@ -69,7 +70,7 @@ class AuthController extends Controller
     }
     public function showProfile()
 {
-    return view('profile', ['user' => Auth::user()]);
+    return view('/profile', ['user' => Auth::user()]);
 }
 
 }

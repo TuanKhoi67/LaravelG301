@@ -17,8 +17,9 @@ class Student extends Model
         'age',
     ];
     public function classRooms()
-    {
-        return $this->belongsToMany(ClassRoom::class, 'class_room');
-    }
+{
+    return $this->belongsToMany(ClassRoom::class, 'class_room_student');
+}
+
 
 }

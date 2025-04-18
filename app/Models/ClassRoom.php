@@ -25,7 +25,7 @@ class ClassRoom extends Model
 
     // Define the relationship with the Student model
     public function students()
-    {
-        return $this->belongsToMany(Student::class, 'class_room');
-    }
+{
+    return $this->belongsToMany(Student::class, 'class_room_student');
+}
 }

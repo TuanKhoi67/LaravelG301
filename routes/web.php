@@ -8,7 +8,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\AuthController;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', fn() => view('about'));
 Route::get('/contact', fn() => view('contact'));
 
@@ -29,4 +29,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/subjects', SubjectController::class);
     Route::resource('/students', StudentController::class);
     Route::resource('/classes', ClassRoomController::class);
+    Route::resource('/Classrooms', ClassRoomController::class);
 });
