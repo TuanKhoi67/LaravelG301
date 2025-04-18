@@ -13,17 +13,18 @@ Route::get('/about', fn() => view('about'));
 Route::get('/contact', fn() => view('contact'));
 
 
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// ✅ CÁC TRANG CẦN ĐĂNG NHẬP MỚI VÀO ĐƯỢC
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [UserController::class, 'profile']);
-    Route::get('/profile/edit', [UserController::class, 'edit']);
-    Route::post('/profile/edit', [UserController::class, 'update']);
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/edit', [UserController::class, 'update'])->name('profile.update');
 
     Route::resource('/subjects', SubjectController::class);
     Route::resource('/students', StudentController::class);

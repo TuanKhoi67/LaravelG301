@@ -3,64 +3,73 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function showRegisterForm() {
-        return view('auth.register');
+    // Hiển thị form login
+    public function showLoginForm()
+    {
+        return view('login');
     }
 
-    public function register(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email|unique:users,email',
-        'password' => 'required|min:6|confirmed',
-        'username' => 'required|min:3|max:255',
-    ]);
-
-    // Tạo người dùng mới
-    $user = User::create([
-        'email' => $request->email,
-        'password' => bcrypt($request->password),
-        'username' => $request->username,
-    ]);
-
-    // Đăng nhập ngay sau khi tạo tài khoản mới
-    Auth::login($user);
-
-    return redirect()->route('login')->with('success', 'Đăng ký thành công, vui lòng đăng nhập.');
-}
-
-
-    public function showLoginForm() {
-        return view('auth.login');
-    }
-
+    // Xử lý login
     public function login(Request $request)
-{
-    // Validate
-    $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
+    {
+        $credentials = $request->only('email', 'password');
 
-    // Kiểm tra đăng nhập
-    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-        // Đăng nhập thành công, chuyển hướng về trang chủ
-        return redirect()->intended('/');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            // Chuyển hướng về trang chủ sau khi đăng nhập thành công
+            return redirect()->route('home'); // Hoặc route khác nếu cần
+        }
+
+        return back()->withErrors([
+            'email' => 'Email hoặc mật khẩu không đúng.',
+        ])->onlyInput('email');
     }
 
-    // Đăng nhập thất bại, quay lại với thông báo lỗi
-    return back()->withErrors([
-        'email' => 'Thông tin đăng nhập không chính xác.',
-    ]);
-}
+    // Hiển thị form register
+    public function showRegisterForm()
+    {
+        return view('register');
+    }
 
-    public function logout() {
+    // Xử lý register
+    public function register(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:1',
+            'phone' => 'nullable|string|max:20',
+        ]);
+    
+        User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => Hash::make($request->password),
+        ]);
+    
+        // Đăng ký xong -> chuyển qua trang login kèm thông báo
+        return redirect('/login')->with('success', 'Đăng ký thành công! Vui lòng đăng nhập.');
+    }
+
+    // Đăng xuất
+    public function logout(Request $request)
+    {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect('/login');
     }
+    public function showProfile()
+{
+    return view('profile', ['user' => Auth::user()]);
+}
+
 }

@@ -57,57 +57,61 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <!-- Logo / Trang chủ -->
-            <a class="navbar-brand d-flex align-items-center" href="/">
-                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo" width="30"
-                    height="30" class="me-2">
-                Quản Lý SV
+
+<div class="collapse navbar-collapse" id="mainNavbar">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="https://img.favpng.com/21/2/8/management-system-higher-education-logo-png-favpng-BMVWMc3Db4zN7DfdhEw4vF0Cm.jpg" alt="Logo" width="30"
+                height="30" class="me-2">
+            Student Management System
+        </a>
+        <!-- Nút điều hướng -->
+        <li class="nav-item">
+            <a class="nav-link" href="/about">Giới thiệu</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/contact">Liên hệ</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/classes">Lớp học</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Quản lý
             </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                <li><a class="dropdown-item" href="/students">Sinh viên</a></li>
+                <li><a class="dropdown-item" href="/subjects">Môn học</a></li>
+            </ul>
+        </li>
+    </ul>
 
-            <!-- Toggle button for mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- Nút điều hướng -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">Giới thiệu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Liên hệ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/classes">Lớp học</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Trang cá nhân</a>
-                    </li>
-
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Quản lý
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                            <li><a class="dropdown-item" href="/students">Sinh viên</a></li>
-                            <li><a class="dropdown-item" href="/subjects">Môn học</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-                <!-- Nút đăng nhập -->
-                <form class="d-flex">
-                    <button class="btn btn-outline-light" type="button"><a class="dropdown-item"
-                            href="/login">Login</a></button>
+    <!-- Auth section -->
+@auth
+    <div class="dropdown">
+        <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            @if(Auth::user()->avatar)
+                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar" width="32" height="32" class="rounded-circle me-2">
+            @else
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" width="32" height="32" class="rounded-circle me-2">
+            @endif
+            {{ Auth::user()->username }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li><a class="dropdown-item" href="/profile">Trang cá nhân</a></li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="dropdown-item" type="submit">Logout</button>
                 </form>
-            </div>
-        </div>
+            </li>
+        </ul>
+    </div>
+@else
+    <a href="{{ route('login') }}" class="btn btn-outline-light">Login</a>
+@endauth
+
+</div>
     </nav>
 
 
