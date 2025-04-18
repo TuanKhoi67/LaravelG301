@@ -91,7 +91,7 @@
     <div class="dropdown">
         <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             @if(Auth::user()->avatar)
-                <img src="{{ asset(Auth::user()->avatar) }}" alt="avatar" width="32" height="32" class="rounded-circle me-2">
+                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="avatar" width="32" height="32" class="rounded-circle me-2">
             @else
                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" width="32" height="32" class="rounded-circle me-2">
             @endif

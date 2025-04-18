@@ -41,7 +41,7 @@
                 <input type="file" class="form-control" name="avatar" id="avatar">
                 @if(Auth::user()->avatar)
                     <div class="mt-2">
-                        <img src="{{ asset(Auth::user()->avatar) }}" alt="Avatar" class="img-thumbnail" width="100">
+                        <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" width="150">
                     </div>
                 @endif
                 @error('avatar') <small class="text-danger">{{ $message }}</small> @enderror

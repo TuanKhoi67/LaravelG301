@@ -30,8 +30,7 @@
                     <div class="card-body">
                         <div class="text-center mb-4">
                             @if(Auth::user()->avatar)
-                                <img src="{{ asset(Auth::user()->avatar) }}" alt="Avatar"
-                                     class="rounded-circle shadow" width="120" height="120">
+                            <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" width="150">
                             @else
                                 <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Avatar"
                                      class="rounded-circle shadow" width="120" height="120">

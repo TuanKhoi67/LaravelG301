@@ -40,7 +40,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
 
         if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars', 'public'); // lưu vào storage/app/public/avatars
+            $avatarPath = $request->file('avatar')->store('avatars', 'public'); 
             $user->avatar = $avatarPath;
         }
 
