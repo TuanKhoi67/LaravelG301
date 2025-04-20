@@ -57,7 +57,7 @@ class ClassRoomController extends Controller
         $students = Student::all();
         $selectedStudents = $class->students->pluck('id')->toArray();
 
-        return view('Classrooms.edit', compact('class', 'subjects', 'students', 'selectedStudents'));
+        return view('Classrooms.edit', compact('class', 'subjects', 'students'));
     }
 
     public function update(Request $request, ClassRoom $class)
@@ -66,25 +66,22 @@ class ClassRoomController extends Controller
             'name' => 'required',
             'subject_id' => 'required',
             'teacher_name' => 'required',
-            'students' => 'required|array',
+            'student_ids' => 'required|array', // sửa lại từ 'students'
         ]);
     
+        // Cập nhật thông tin lớp
         $class->update([
             'name' => $request->name,
             'subject_id' => $request->subject_id,
             'teacher_name' => $request->teacher_name,
         ]);
     
+        // Gắn học sinh vào lớp - Lúc này class đã có ID
         $class->students()->sync($request->student_ids);
     
         return redirect()->route('Classrooms.index')->with('success', 'Cập nhật lớp học thành công');
     }
+    
     // Delete a classroom
-    public function destroy(ClassRoom $class)
-    {
-        $class->students()->detach();
-        $class->delete();
-
-        return redirect()->route('Classrooms.index')->with('success', 'Xóa lớp học thành công');
-    }    
+       
 }

@@ -13,7 +13,6 @@ class ClassRoom extends Model
     protected $fillable = [
         'name', 
         'subject_id',
-        'student_id',
         'teacher_name',
     ];
 
