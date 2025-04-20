@@ -11,7 +11,7 @@
     <div class="col-md-6">
       <div class="card shadow rounded">
         <div class="card-body">
-          <h3 class="mb-4 text-center">Đăng nhập</h3>
+          <h3 class="mb-4 text-center">Login</h3>
 
           {{-- Success Message --}}
           @if(session('success'))
@@ -34,13 +34,13 @@
               <input type="email" name="email" class="form-control" required value="{{ old('email') }}">
             </div>
             <div class="mb-3">
-              <label>Mật khẩu:</label>
+              <label>Pasword:</label>
               <input type="password" name="password" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
           </form>
           <div class="mt-3 text-center">
-            Chưa có tài khoản? <a href="{{ url('/register') }}">Đăng ký</a>
+            Don't have an account? <a href="{{ url('/register') }}">Register</a>
           </div>
         </div>
       </div>

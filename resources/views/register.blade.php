@@ -11,7 +11,7 @@
     <div class="col-md-6">
       <div class="card shadow rounded">
         <div class="card-body">
-          <h3 class="mb-4 text-center">Đăng ký</h3>
+          <h3 class="mb-4 text-center">Register</h3>
 
           {{-- Error Message --}}
           @if($errors->any())
@@ -27,7 +27,7 @@
           <form method="POST" action="{{ url('/register') }}">
             @csrf
             <div class="mb-3">
-              <label>Tên người dùng:</label>
+              <label>User Name:</label>
               <input type="text" name="username" class="form-control" required value="{{ old('username') }}">
             </div>
             <div class="mb-3">
@@ -35,18 +35,18 @@
               <input type="email" name="email" class="form-control" required value="{{ old('email') }}">
             </div>
             <div class="mb-3">
-              <label>Mật khẩu:</label>
+              <label>Password:</label>
               <input type="password" name="password" class="form-control" required>
             </div>
             <div class="mb-3">
-              <label>Số điện thoại:</label>
+              <label>Phone number:</label>
               <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
             </div>
-            <button type="submit" class="btn btn-success w-100">Đăng ký</button>
+            <button type="submit" class="btn btn-success w-100">Register</button>
           </form>
 
           <div class="mt-3 text-center">
-            Đã có tài khoản? <a href="{{ url('/login') }}">Đăng nhập</a>
+            Already have an account? <a href="{{ url('/login') }}">Login</a>
           </div>
         </div>
       </div>

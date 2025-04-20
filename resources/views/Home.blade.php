@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quản Lý Sinh Viên</title>
+    <title>Student managerment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .hero {
@@ -67,21 +67,21 @@
         </a>
         <!-- Nút điều hướng -->
         <li class="nav-item">
-            <a class="nav-link" href="/about">Giới thiệu</a>
+            <a class="nav-link" href="/about">About us</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/contact">Liên hệ</a>
+            <a class="nav-link" href="/contact">Contact</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/classes">Lớp học</a>
+            <a class="nav-link" href="/classes">Class</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Quản lý
+                Manager
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                <li><a class="dropdown-item" href="/students">Sinh viên</a></li>
-                <li><a class="dropdown-item" href="/subjects">Môn học</a></li>
+                <li><a class="dropdown-item" href="/students">Student</a></li>
+                <li><a class="dropdown-item" href="/subjects">course</a></li>
             </ul>
         </li>
     </ul>
@@ -98,7 +98,7 @@
             {{ Auth::user()->username }}
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="/profile">Trang cá nhân</a></li>
+            <li><a class="dropdown-item" href="/profile">Personal page</a></li>
             <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -137,23 +137,23 @@
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#studentCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Trước</span>
+            <span class="visually-hidden">go back</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#studentCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Tiếp</span>
+            <span class="visually-hidden">go to forward</span>
         </button>
     </div>
 
     <!-- Nội dung chính -->
     <div class="container py-5">
-        <h2 class="mb-4 text-center">Chào mừng đến với hệ thống</h2>
-        <p class="text-center">Quản lý thông tin sinh viên một cách dễ dàng và hiệu quả.</p>
+        <h2 class="mb-4 text-center">Welcome to the system</h2>
+        <p class="text-center">Manage student information easily and efficiently.</p>
     </div>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-        &copy; 2025 Hệ thống quản lý sinh viên. Mọi quyền được bảo lưu.
+        &copy; 2025 Student Management System. All rights reserved.
     </footer>
 
     <script>

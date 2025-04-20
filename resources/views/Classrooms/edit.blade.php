@@ -2,17 +2,17 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Chỉnh sửa Lớp Học</title>
+    <title>Update Class</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container py-4">
-        <h2>Chỉnh sửa lớp học</h2>
+        <h2>Update Class</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
-                <strong>Lỗi!</strong> Vui lòng kiểm tra lại dữ liệu bạn đã nhập.
+                <strong>Error!</strong> Please double check the data you entered.
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -26,12 +26,12 @@
             @method('PUT')
 
             <div class="mb-3">
-                <label for="name" class="form-label">Tên lớp</label>
+                <label for="name" class="form-label">Class name</label>
                 <input type="text" name="name" class="form-control" value="{{ $class->name }}" required>
             </div>
 
             <div class="mb-3">
-                <label for="subject_id" class="form-label">Môn học</label>
+                <label for="subject_id" class="form-label">Course</label>
                 <select name="subject_id" class="form-select" required>
                     @foreach ($subjects as $subject)
                         <option value="{{ $subject->id }}" {{ $subject->id == $class->subject_id ? 'selected' : '' }}>
@@ -42,15 +42,15 @@
             </div>
 
             <div class="mb-3">
-                <label for="teacher_name" class="form-label">Giáo viên</label>
+                <label for="teacher_name" class="form-label">teacher</label>
                 <input type="text" name="teacher_name" class="form-control" value="{{ $class->teacher_name }}" required>
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Chọn học sinh</label>
+                <label class="form-label">choose student</label>
                 <div class="form-check mb-2">
                     <input type="checkbox" id="checkAll" class="form-check-input">
-                    <label for="checkAll" class="form-check-label">Chọn tất cả</label>
+                    <label for="checkAll" class="form-check-label">Choose all</label>
                 </div>
 
                 @foreach ($students as $student)
@@ -63,7 +63,7 @@
                 @endforeach
             </div>
 
-            <button type="submit" class="btn btn-primary">Cập nhật lớp học</button>
+            <button type="submit" class="btn btn-primary">Update class</button>
         </form>
     </div>
 
