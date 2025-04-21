@@ -60,6 +60,7 @@
 
             <div class="d-flex justify-content-between">
                 <a href="/profile" class="btn btn-secondary">Cancel</a>
+                
                 <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
