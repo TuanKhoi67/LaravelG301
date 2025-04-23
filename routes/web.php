@@ -7,6 +7,9 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
+
+Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', fn() => view('about'));

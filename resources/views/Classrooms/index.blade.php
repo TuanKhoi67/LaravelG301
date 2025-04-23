@@ -2,23 +2,23 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>class list</title>
+    <title>Class list</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container py-4">
-        <h2>class list</h2>
+        <h2>Class list</h2>
         <a href="{{ route('classes.create') }}" class="btn btn-primary mb-3">Create new class</a>
-    
+
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Class name</th>
-                    <th>course</th>
-                    <th>teacher</th>
-                    <th>student</th>
-                    <th>act</th>
+                    <th>Course</th>
+                    <th>Teacher</th>
+                    <th>Student</th>
+                    <th>Act</th>
                 </tr>
             </thead>
             <tbody>
