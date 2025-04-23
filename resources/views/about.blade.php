@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About - Student Management System</title>
+    <title>About - Student mmanagement </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body class="bg-light">
     <header class="bg-dark text-white py-4 mb-4">
       <div class="container text-center">
-        <h1 class="display-5">Student Management System</h1>
+        <h1 class="display-5">Student Management </h1>
       </div>
     </header>
 
