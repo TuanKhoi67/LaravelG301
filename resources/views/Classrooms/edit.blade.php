@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Update Class</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
+@extends('layouts.app')
+
+@section('title', 'Update Class - Student Management')
+
+@push('styles')
+<style>
     body {
       background: linear-gradient(to right, #dff9fb, #f9f7f7);
       min-height: 100vh;
@@ -40,7 +37,10 @@
       color: #2d3436;
     }
   </style>
-</head>
+@endpush
+
+@section('content')
+
 <body>
 
 <div class="card shadow">
@@ -116,7 +116,5 @@
     checkboxes.forEach(cb => cb.checked = this.checked);
   });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
-</html>
+@endsection

@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="vi">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Student managerment</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+@section('title', 'Home - Student Management')
+
+@push('styles')
     <style>
         html, body {
             height: 100%;
@@ -34,7 +31,6 @@
         transform: translateY(0);
     }
 }
-
         .hero {
             background-image: url('https://images.unsplash.com/photo-1603575448361-cd907dc21215');
             background-size: cover;
@@ -75,67 +71,15 @@
             }
         }
 
-
         .carousel-item img {
             object-fit: cover;
             height: 400px;
         }
     </style>
-</head>
+@endpush
 
+@section('content')
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand d-flex align-items-center" href="/">
-            <img src="https://img.favpng.com/21/2/8/management-system-higher-education-logo-png-favpng-BMVWMc3Db4zN7DfdhEw4vF0Cm.jpg" alt="Logo" width="30" height="30" class="me-2">
-            Student Management System
-        </a>
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/classes">Class</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Manager
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                        <li><a class="dropdown-item" href="/students">Student</a></li>
-                        <li><a class="dropdown-item" href="/subjects">course</a></li>
-                    </ul>
-                </li>
-            </ul>
-
-            @auth
-            <div class="dropdown">
-                <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    @if(Auth::user()->avatar)
-                        <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="avatar" width="32" height="32" class="rounded-circle me-2">
-                    @else
-                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" width="32" height="32" class="rounded-circle me-2">
-                    @endif
-                    {{ Auth::user()->username }}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="/profile">Personal page</a></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button class="dropdown-item" type="submit">Logout</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            @else
-            <a href="{{ route('login') }}" class="btn btn-outline-light">Login</a>
-            @endauth
-        </div>
-    </nav>
 
     <div id="studentCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -147,9 +91,6 @@
             </div>
             <div class="carousel-item">
                 <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" class="d-block w-100" alt="Slide 3">
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1522199794611-8e5e5a0177a3" class="d-block w-100" alt="Slide 4">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#studentCarousel" data-bs-slide="prev">
@@ -173,20 +114,12 @@
 
     </main>
 
-    <footer class="bg-secondary text-white text-center py-3">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 Student Management System. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
         function handleLogin() {
             alert("Chuyển đến trang đăng nhập...");
             // window.location.href = "/login";
         }
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>
+@endsection

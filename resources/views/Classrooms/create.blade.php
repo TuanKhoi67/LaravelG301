@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create Class - Student Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+@extends('layouts.app')
+
+@section('title', 'Create Class - Student Management')
+
+@push('styles')
     <style>
         body {
             background: linear-gradient(to right, #74ebd5, #acb6e5);
@@ -21,6 +18,8 @@
             font-weight: bold;
         }
     </style>
+@endpush
+@section('content')
 </head>
 <body>
     <div class="container py-4">
@@ -96,4 +95,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+
+@endsection

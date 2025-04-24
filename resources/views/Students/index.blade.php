@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="vi">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>List of Students</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+@section('title', 'List of Students - Student Management')
+
+@push('styles')
     <style>
         body {
             background: #f1f2f6;
@@ -40,13 +36,9 @@
             margin-top: 50px;
         }
     </style>
-</head>
-
+@endpush
+@section('content')
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-        <a class="navbar-brand" href="/"><i class="fas fa-user-graduate me-2"></i>Student Management</a>
-    </nav>
-
     <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2><i class="fas fa-list-ul me-2"></i>List of Students</h2>
@@ -102,13 +94,5 @@
         </div>
     </div>
 
-    <footer class="bg-secondary text-white text-center py-3">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 Student Management System. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-</html>
+@endsection

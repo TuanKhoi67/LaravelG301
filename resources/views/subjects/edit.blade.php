@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Sửa Môn Học</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@extends('layouts.app')
+
+@section('title', 'Update Subject - Student Management')
+
+@section('content')
+
 <body>
     <div class="container py-5">
-        <h2 class="text-center mb-4">Sửa Môn Học</h2>
+        <h2 class="text-center mb-4">Edit Subject</h2>
         <form action="{{ route('subjects.update', $subject->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
-                <label for="name" class="form-label">Tên Môn Học</label>
+                <label for="name" class="form-label">Subject Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ $subject->name }}" required>
             </div>
 
             <div class="mb-3">
-                <label for="detail" class="form-label">Chi Tiết</label>
+                <label for="detail" class="form-label">Detail</label>
                 <textarea class="form-control" id="detail" name="detail" required>{{ $subject->detail }}</textarea>
             </div>
 

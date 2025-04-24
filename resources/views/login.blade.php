@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Login - Student Management</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+@extends('layouts.app')
+
+@section('title', 'Login - Student Management')
+
+@push('styles')
   <style>
     body {
       background: linear-gradient(to right, #74ebd5, #9face6);
       min-height: 100vh;
       display: flex;
-      align-items: center;
+
       justify-content: center;
     }
   </style>
-</head>
+@endpush
+@section('content')
 <body>
-
-
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
@@ -77,4 +73,4 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+@endsection

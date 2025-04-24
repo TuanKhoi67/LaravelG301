@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="vi">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Update Student</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+@section('title', 'Update Student - Student Management')
+
+@push('styles')
     <style>
         body {
             background: linear-gradient(to right, #f1f2f6, #dfe6e9);
@@ -40,12 +36,10 @@
             width: 100%;
         }
     </style>
-</head>
+@endpush
 
+@section('content')
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-        <a class="navbar-brand" href="/"><i class="fas fa-user-graduate me-2"></i>Student Management</a>
-    </nav>
 
     <div class="card">
         <h2 class="text-center mb-4"><i class="fas fa-edit me-2"></i>Update Student</h2>
@@ -82,13 +76,5 @@
         </form>
     </div>
 
-    <footer class="bg-secondary text-white text-center py-3">
-        <div class="container">
-            <p class="mb-0">&copy; 2025 Student Management System. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
-</html>
+@endsection

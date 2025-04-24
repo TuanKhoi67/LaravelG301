@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Thêm Mới Môn Học</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@extends('layouts.app')
+
+@section('title', 'Add Subject - Student Management')
+
+@section('content')
+
 <body>
     <div class="container py-5">
         <h2 class="text-center mb-4">Thêm Môn Học Mới</h2>
@@ -33,6 +31,5 @@
             <button type="submit" class="btn btn-primary">Lưu</button>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+@endsection
