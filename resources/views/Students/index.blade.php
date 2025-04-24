@@ -72,13 +72,13 @@
                             <td>{{ $student->age }}</td>
                             <td>
                                 <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-warning me-1">
-                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-edit">Edit</i>
                                 </a>
                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này?')">
-                                        <i class="fas fa-trash-alt"></i>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this student?')">
+                                        <i class="fas fa-trash-alt">Delete</i>
                                     </button>
                                 </form>
                             </td>

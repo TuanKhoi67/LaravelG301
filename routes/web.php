@@ -33,4 +33,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/students', StudentController::class);
     Route::resource('/classes', ClassRoomController::class);
     Route::resource('/Classrooms', ClassRoomController::class);
+
 });

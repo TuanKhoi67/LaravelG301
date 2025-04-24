@@ -6,8 +6,8 @@
 
 <body>
     <div class="container py-5">
-        <h2 class="text-center mb-4">Danh sách Môn Học</h2>
-        <a href="{{ route('subjects.create') }}" class="btn btn-primary mb-4">Thêm Mới</a>
+        <h2 class="text-center mb-4">List of subject</h2>
+        <a href="{{ route('subjects.create') }}" class="btn btn-primary mb-4">Add subject</a>
 
         @if(session('success'))
             <div class="alert alert-success">
@@ -18,10 +18,10 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Tên Môn Học</th>
-                    <th>Chi Tiết</th>
-                    <th>Loại</th>
-                    <th>Hành Động</th>
+                    <th>Subject</th>
+                    <th>Detail</th>
+                    <th>Type</th>
+                    <th>Acction</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,11 +31,11 @@
                         <td>{{ $subject->detail }}</td>
                         <td>{{ $subject->type }}</td>
                         <td>
-                            <a href="{{ route('subjects.edit', $subject->id) }}" class="btn btn-warning">Sửa</a>
+                            <a href="{{ route('subjects.edit', $subject->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Xóa</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this subject?')">Delete</button>
                             </form>
                         </td>
                     </tr>

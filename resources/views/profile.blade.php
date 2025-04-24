@@ -5,16 +5,6 @@
 @section('content')
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
-        <a class="navbar-brand" href="/">Student Management</a>
-        <div class="ms-auto">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button class="btn btn-outline-light" type="submit">Logout</button>
-            </form>
-        </div>
-    </nav>
-
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-8">

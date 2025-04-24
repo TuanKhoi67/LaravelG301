@@ -7,7 +7,6 @@
     <div class="container py-4">
         <h2>Class list</h2>
         <a href="{{ route('classes.create') }}" class="btn btn-primary mb-3">Create new class</a>
-
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -35,7 +34,9 @@
                             <a href="{{ route('classes.edit', $class->id) }}" class="btn btn-warning btn-sm">update</a>
                             <form action="{{ route('classes.destroy', $class->id) }}" method="POST" class="d-inline">
                                 @csrf @method('DELETE')
-                                <button class="btn btn-danger btn-sm" onclick="return confirm('Bạn chắc chứ?')">delete</button>
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this class?')">
+                                        <i class="fas fa-trash-alt">Delete</i>
+                                    </button>
                             </form>
                         </td>
                     </tr>

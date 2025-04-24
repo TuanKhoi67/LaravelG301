@@ -4,24 +4,27 @@
 
 @push('styles')
 <style>
-    body {
-      background: linear-gradient(to right, #dff9fb, #f9f7f7);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card {
-      border-radius: 1rem;
-      padding: 2rem;
-      max-width: 700px;
-      width: 100%;
-      background-color: white;
-    }
+  body {
+    background: linear-gradient(to right, #dff9fb, #f9f7f7);
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    {{--  align-items: center;  --}}
+  }
+  
+  .card.shadow {
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 700px;
+    width: 100%;
+    background-color: white;
+  }
+  
 
     .form-label {
       font-weight: 600;
+      
     }
 
     .btn-primary {
@@ -41,9 +44,8 @@
 
 @section('content')
 
-<body>
 
-<div class="card shadow">
+<div class="card shadow" style="margin-top: 7%; margin-left: 32%;">
   <h2 class="text-center mb-4"><i class="fas fa-edit me-2"></i>Update Class</h2>
 
   @if ($errors->any())
@@ -116,5 +118,5 @@
     checkboxes.forEach(cb => cb.checked = this.checked);
   });
 </script>
-</body>
+
 @endsection

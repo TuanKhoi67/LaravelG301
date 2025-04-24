@@ -82,6 +82,13 @@ class ClassRoomController extends Controller
         return redirect()->route('Classrooms.index')->with('success', 'Cập nhật lớp học thành công');
     }
     
-    // Delete a classroom
+    public function destroy(ClassRoom $class)
+    {
+        $class->students()->detach();
+
+        $class->delete();
+
+        return redirect()->route('Classrooms.index')->with('success', 'Lớp học đã được xóa thành công.');
+    }
        
 }

@@ -8,7 +8,7 @@
             background: linear-gradient(to right, #74ebd5, #acb6e5);
             min-height: 100vh;
             display: flex;
-            align-items: center;
+
             justify-content: center;
         }
         .card {
@@ -19,81 +19,88 @@
         }
     </style>
 @endpush
+
 @section('content')
-</head>
-<body>
-    <div class="container py-4">
-        <div class="card shadow-lg p-4">
-            <h2 class="text-center text-primary mb-4"><i class="fas fa-chalkboard-teacher me-2"></i>Create Class</h2>
+<div class="container">
+    <h2>Create new class</h2>
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <strong>Error!</strong> Please double check the data you entered.<br><br>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-            <form action="{{ route('Classrooms.update', $class->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+    <form action="{{ route('Classrooms.store') }}" method="POST">
+        @csrf
 
-                <div class="mb-3">
-                    <label for="name" class="form-label">Class Name</label>
-                    <input type="text" name="name" class="form-control" value="{{ old('name', $class->name) }}" required>
-                </div>
+        <div class="form-group">
+            <label for="name">name class:</label>
+            <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+        </div>
 
-                <div class="mb-3">
-                    <label for="subject_id" class="form-label">Course</label>
-                    <select name="subject_id" class="form-select" required>
-                        @foreach ($subjects as $subject)
-                            <option value="{{ $subject->id }}" {{ $class->subject_id == $subject->id ? 'selected' : '' }}>
-                                {{ $subject->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+        <div class="form-group">
+            <label for="teacher_name">teacher name:</label>
+            <input type="text" name="teacher_name" class="form-control" value="{{ old('teacher_name') }}" required>
+        </div>
 
-                <div class="mb-3">
-                    <label for="teacher_name" class="form-label">Teacher Name</label>
-                    <input type="text" name="teacher_name" class="form-control" value="{{ old('teacher_name', $class->teacher_name) }}" required>
-                </div>
+        <div class="form-group">
+            <label for="subject_id">Subject:</label>
+            <select name="subject_id" class="form-control" required>
+                <option value="">-- Choice Subject --</option>
+                @foreach ($subjects as $subject)
+                    <option value="{{ $subject->id }}" {{ old('subject_id') == $subject->id ? 'selected' : '' }}>
+                        {{ $subject->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Choose Students</label>
-                    <div class="form-check mb-2">
-                        <input type="checkbox" id="checkAll" class="form-check-input">
-                        <label for="checkAll" class="form-check-label">Select All Students</label>
-                    </div>
-
+        <div class="card mt-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>Student</span>
+                <button type="button" class="btn btn-sm btn-secondary" id="toggle-all">All</button>
+            </div>
+            <div class="card-body">
+                <div class="row">
                     @foreach ($students as $student)
-                        <div class="form-check">
-                            <input type="checkbox" name="students[]" value="{{ $student->id }}" class="form-check-input student-checkbox"
-                                {{ in_array($student->id, $class->students->pluck('id')->toArray()) ? 'checked' : '' }}>
-                            <label class="form-check-label">{{ $student->name }}</label>
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input 
+                                    type="checkbox" 
+                                    name="student_ids[]" 
+                                    value="{{ $student->id }}" 
+                                    class="form-check-input student-checkbox" 
+                                    id="student_{{ $student->id }}"
+                                    {{ is_array(old('student_ids')) && in_array($student->id, old('student_ids')) ? 'checked' : '' }}
+                                >
+                                <label class="form-check-label" for="student_{{ $student->id }}">
+                                    {{ $student->name }}
+                                </label>
+                            </div>
                         </div>
                     @endforeach
                 </div>
-
-                <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-success"><i class="fas fa-save me-2"></i>Save Class</button>
-                    <a href="{{ route('Classrooms.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left me-2"></i>Go Back</a>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
 
-    <script>
-        document.getElementById('checkAll').addEventListener('change', function () {
-            const checkboxes = document.querySelectorAll('.student-checkbox');
-            checkboxes.forEach(cb => cb.checked = this.checked);
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtn = document.getElementById('toggle-all');
+        const checkboxes = document.querySelectorAll('.student-checkbox');
+        let allChecked = false;
+
+        toggleBtn.addEventListener('click', function () {
+            allChecked = !allChecked;
+            checkboxes.forEach(checkbox => checkbox.checked = allChecked);
+            toggleBtn.textContent = allChecked ? 'Bỏ chọn tất cả' : 'Chọn tất cả';
         });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
+    });
+</script>
 @endsection

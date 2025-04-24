@@ -21,7 +21,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="type" class="form-label">Loại</label>
+                <label for="type" class="form-label">Type</label>
                 <select class="form-control" id="type" name="type" required>
                     <option value="Khoa học" {{ $subject->type == 'Khoa học' ? 'selected' : '' }}>Khoa học</option>
                     <option value="Tự nhiên" {{ $subject->type == 'Tự nhiên' ? 'selected' : '' }}>Tự nhiên</option>
@@ -29,9 +29,10 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary">Cập Nhật</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+@endsection
